@@ -15,18 +15,20 @@ class TicTacToe {
         this.oArray = []
     }
     resetGame() {
-
+        // clear grid
+        cells.forEach(cell => {
+            cell.innerText = ''
+        })
+        // reset count
+        // reset xArray and oArray
     }
     append(cell) {
         if (this.count % 2 === 0) {
             cell.innerText = 'X'
-            console.log(cell.dataset.value)
             this.xArray.push(Number(cell.dataset.value))
-            // console.log(this.xArray)
         } else {
             cell.innerText = 'O'
             this.oArray.push(Number(cell.dataset.value))
-            // console.log(this.oArray)
         }
         this.count++
     }
@@ -34,15 +36,19 @@ class TicTacToe {
 
     }
     displayWin() {
-
+        displayWinner.innerText = 'X Player Wins!'
     }
 }
 
 const cells = document.querySelectorAll('.cell')
+const resetBtn = document.querySelector('.reset')
+const displayWinner = document.querySelector('.display-winner')
 
 let newGame = new TicTacToe()
 
 cells.forEach(cell => cell.addEventListener('click', () => {
-    console.log(cell)
+    // console.log(cell)
     newGame.append(cell)
 }))
+
+resetBtn.addEventListener('click', newGame.resetGame)
